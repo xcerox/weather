@@ -1,10 +1,14 @@
 import React, { Component } from 'react';
 
+import SearchBar from 'Containers/search-bar';
+import WeatherList from 'Containers/weather-list';
+
 export default class App extends Component {
   render() {
     return (
-      <div >
-        <h1>Hello world!</h1>
+      <div>
+        <SearchBar />
+        <WeatherList />
       </div>
     );
   }
