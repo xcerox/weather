@@ -8,21 +8,21 @@ function average( { data }) {
 
 export default (props) => {
   return (
-    <Fragment >
-      <Trend
+    <div >
+      <Trend className="row"
         smooth
         autoDraw
         autoDrawDuration={3000}
         data={props.data}
-        width={180}
-        height={60}
+        width={100}
+        height={40}
         gradient={props.gradient} 
         radius={9.9}
         strokeWidth={2}
-      />
-      <div>
-          Average: { average(props) }
+      /> 
+      <div className="row">
+      Average: { average(props) + ` ${props.unity}`}
       </div>
-    </Fragment>
+    </div>
   )
 }

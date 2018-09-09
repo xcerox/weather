@@ -1,13 +1,22 @@
-td, th {
+body {
+  background: linear-gradient(rgba(255,255,255,.6), rgba(255,255,255,.6)), url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSC0Oq-tizIMqc81D0GrJN1Du4iZmDwyxQGpWH1pFXIKVcjOYMY");
+  background-repeat: repeat;
+}
+
+.center-text {
   vertical-align : middle !important;
   text-align: center !important;
 }
 
-.input-group {
-  margin: 20px 20px;
+div.google-map {
+  height: 220px;
+  width: 350px;
 }
 
-td:first-of-type, td:first-of-type > div {
-  height: 200px;
-  width: 250px;
+.middle {
+  position: absolute;
+  top: 25%;
+  left: 50%;
+  margin: -50px 0px 0px -50px;
+  z-index: 5000;
 }

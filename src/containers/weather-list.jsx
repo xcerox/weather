@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Chart from 'Components/chart';
 import GoogleMap from 'Components/google-map';
+import LoadingBar from 'Components/loading-bar';
 
 class WeatherList extends Component {
 
@@ -24,32 +25,50 @@ class WeatherList extends Component {
     const {lat, lon } = city.coord;
 
     return (
-      <tr key={city.name}>
-        <td><GoogleMap lon={lon} lat={lat}/></td>
-        <td><Chart data={data.temps} gradient={['#00c6ff', '#F0F', '#FF0']} /></td>
-        <td><Chart data={data.pressures} gradient={['red', 'orange', 'yellow']} /></td>
-        <td><Chart data={data.humidities} gradient={['#f72047', '#ffd200', '#1feaea']} /></td>
-      </tr>
+      <div className="col s12 animated fadeInDown" key={city.name}>
+        <div className="card horizontal">
+          <div>
+            <GoogleMap lon={lon} lat={lat}/>
+          </div>
+          <div className="card-stacked">
+            <div className="card-content">
+              <div className = "row center-text">
+                <div className="col s4">
+                  <div className="row">
+                    <strong>Temperature:</strong>
+                  </div>
+                   <Chart data={data.temps}  unity={'(K)'} gradient={['#00c6ff', '#F0F', '#FF0']} />
+                </div>
+                <div className="col s4 center-text">
+                  <div className="row">
+                    <strong>Pressure:</strong>
+                  </div>
+                  <Chart data={data.pressures} unity={'(hPa)'} gradient={['red', 'orange', 'yellow']} />
+                </div>
+                <div className="col s4 center-text">
+                  <div className="row">
+                    <strong>Humidiy:</strong>
+                  </div>
+                  <Chart data={data.humidities} unity={'(%)'} gradient={['#f72047', '#ffd200', '#1feaea']} />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     )
   }
 
   render() {
-    const { weather } = this.props;
+    const { isLoading, data } = this.props.weather;
 
     return (
-      <table className="table table-hover">
-        <thead>
-          <tr>
-            <th>City</th>
-            <th>Temperature (K)</th>
-            <th>Pressure (hPa)</th>
-            <th>Humidity (%)</th>
-          </tr>
-        </thead>
-        <tbody>
-          { weather.map(this.renderWeather) }
-        </tbody>
-      </table> 
+      <div>
+        <LoadingBar isLoading= {isLoading}/>
+        {
+          data.map(this.renderWeather)
+        }
+      </div>
     )
   }
 }

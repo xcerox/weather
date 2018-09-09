@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import fetchWeather from 'Actions'
+import { fetchWeather } from 'Actions'
 
 class SearchBar extends Component {
 
@@ -29,12 +29,17 @@ class SearchBar extends Component {
     const { term } = this.state;
 
     return (
-      <form className="input-group" onSubmit={this.onFormSubmit}>
-        <input value={term} placeholder="cities" className="form-control" onChange={this.onInputChange}/>
-        <span className="input-group-btn">
-          <button type="submit" className="btn btn-secondary">Search</button>
-        </span>
-      </form>
+      <div className="row">
+        <form className="col s12" onSubmit={this.onFormSubmit}>
+          <div className="row">
+            <div className="input-field col s12">
+              <i className="material-icons prefix">search</i>
+              <input autoComplete="off" value={term} id="icon_prefix" type="text" className="validate" onChange={this.onInputChange} />
+              <label htmlFor="icon_prefix"><strong>Cities</strong></label>
+            </div>
+          </div>
+        </form>
+      </div>
     )
   }
 }
