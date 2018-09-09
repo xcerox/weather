@@ -13,4 +13,4 @@ this project was done throughout the course: https://www.udemy.com/react-redux/
 * issue: npm install | npm start
 * and finally enjoy it.
 #### Showing
-![React App](https://raw.githubusercontent.com/xcerox/weather/master/showroom/use_case_weather.gif)
+![React App](https://raw.githubusercontent.com/xcerox/weather/master/showroom/use_case_weather_update.gif)
