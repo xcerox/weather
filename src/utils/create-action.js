@@ -16,3 +16,11 @@ export function createAction(type, ...props) {
     return action;
   }
 }
+
+export function createActionThunk(fn) {
+  return (value) => {
+    return (dispatch, getState) => {
+      fn(value, dispatch, getState);
+    }
+  }
+}
