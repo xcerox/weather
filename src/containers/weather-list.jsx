@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+
 import Chart from 'Components/chart';
 import GoogleMap from 'Components/google-map';
 import LoadingBar from 'Components/loading-bar';
+import ErrorToast from 'Components/error-toast';
 
 class WeatherList extends Component {
 
@@ -60,11 +62,12 @@ class WeatherList extends Component {
   }
 
   render() {
-    const { isLoading, data } = this.props.weather;
+    const { isLoading, isError, data } = this.props.weather;
 
     return (
       <div>
         <LoadingBar isLoading= {isLoading}/>
+        <ErrorToast isError= {isError}/>
         {
           data.map(this.renderWeather)
         }
