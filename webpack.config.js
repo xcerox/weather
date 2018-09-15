@@ -1,32 +1,40 @@
-const path = require("path");
+const path = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
   entry: './src/index.js',
   output: {
-    path: path.resolve(__dirname, "public/js"),   // absolute path where it's gonna be the file
-    publicPath: '/js/',                           // relative path where it's gonna be the file
-    filename: 'bundle.js'
+    path: path.join(__dirname, '/dist'),
+    filename: 'bundle.js',
   },
+
   devtool: 'eval-source-map',
+
   module: {
-    loaders: [
+    rules: [
       {
+        test: /\.(js|jsx)$/,
         exclude: /node_modules/,
-        loader: 'babel',
-        query: {
-          presets: ['react', 'es2015', 'stage-1']
+        use: {
+          loader: 'babel-loader',
+          options: {
+            cacheDirectory: true,
+            presets: ['env', 'react'],
+          }
         }
       },
       {
-        test: /\.json$/,
-        loader: 'json-loader'
+        test: /\.css$/,
+        use: ['style-loader', 'css-loader']
       }
-    ],
+    ]
   },
+
   resolve: {
-    extensions: ['', '.js', '.jsx', '.json'],
+    extensions: ['.js', '.jsx', '.json'],
     alias: {
       Utils: path.resolve(__dirname, 'src/utils/'),
+      Styles: path.resolve(__dirname, 'src/styles/'),
       Actions: path.resolve(__dirname, 'src/actions/'),
       Reducers: path.resolve(__dirname, 'src/reducers/'),
       Services: path.resolve(__dirname, 'src/utils/services/'),
@@ -35,14 +43,21 @@ module.exports = {
       Components: path.resolve(__dirname, 'src/components/'),
     }
   },
+
+  plugins: [
+    new HtmlWebpackPlugin({
+      template: './src/index.html'
+    }),
+  ],
+
   devServer: {
-    historyApiFallback: true,
-    contentBase: './public',
     open: true,
     port: 4200,
     watchOptions: {
       aggregateTimeout: 300,
       poll: 1000
     }
-  }
-};
+  },
+
+  target: 'web',
+}

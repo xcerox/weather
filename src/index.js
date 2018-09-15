@@ -8,4 +8,4 @@ import App from 'Components/app';
 ReactDOM.render(
   <Provider store={store}>
     <App />
-  </Provider>, document.querySelector('.container'))
+  </Provider>, document.querySelector('#root'));
